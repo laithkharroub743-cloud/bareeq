@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextSpan(
                         text: '.',
                         style: Theme.of(context).textTheme.displayLarge!
-                            .copyWith(color: AppColors.secondary),
+                            .copyWith(color: AppColors.accent),
                       ),
                     ],
                   ),
@@ -94,9 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 4),
                 Text(
                   'كل ما يلمع في عالمك، بلمسة واحدة',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: AppColors.onSurfaceSecondry,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium!.copyWith(color: AppColors.muted),
                 ),
               ],
             ),
@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'نسيت كلمة المرور؟',
                               style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(color: AppColors.secondary),
+                                  .copyWith(color: AppColors.accent),
                             ),
                           ),
                         ],
@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           '🍎 حساب apple ',
                           style: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: AppColors.onSurface),
+                              .copyWith(color: AppColors.dark),
                         ),
                       ),
                     ),
@@ -263,7 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           '🌎 حساب google ',
                           style: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: AppColors.onSurface),
+                              .copyWith(color: AppColors.dark),
                         ),
                       ),
                     ),

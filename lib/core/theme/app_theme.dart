@@ -6,11 +6,8 @@ ThemeData buildLightTheme() {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
-      secondary: AppColors.secondary,
-      surface: AppColors.surface,
-      onSurface: AppColors.onSurface,
-      onSurfaceVariant: AppColors.onSurfaceSecondry,
-      outline: AppColors.borderColor,
+      primary: AppColors.primary,
+      secondary: AppColors.accent,
     ),
     textTheme: GoogleFonts.cairoTextTheme().copyWith(
       displayLarge: GoogleFonts.cairo(fontWeight: FontWeight.bold),
@@ -35,5 +32,6 @@ ThemeData buildLightTheme() {
         borderSide: const BorderSide(color: Color(0xFF064E3B), width: 1.5),
       ),
     ),
+    scaffoldBackgroundColor: AppColors.surface,
   );
 }

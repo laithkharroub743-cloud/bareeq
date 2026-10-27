@@ -3,7 +3,6 @@ import 'package:bareeq/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 void main() {
   runApp(const BarreqApp());
 }
@@ -22,8 +21,7 @@ class BarreqApp extends StatelessWidget {
       ],
       supportedLocales: [Locale('ar')],
 
-      home: LoginScreen()
-      
+      home: LoginScreen(),
     );
   }
 }
