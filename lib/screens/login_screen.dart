@@ -1,6 +1,11 @@
 import 'package:bareeq/core/theme/app_colors.dart';
+import 'package:bareeq/core/utils/validators.dart';
+import 'package:bareeq/core/widgets/bareeq_logo.dart';
+import 'package:bareeq/core/widgets/gradient_button.dart';
+import 'package:bareeq/core/widgets/password_field.dart';
+import 'package:bareeq/screens/signup_screen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,19 +14,47 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
+
+  bool _isLoading = false;
   @override
   void initState() {
     super.initState();
+
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+      });
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('تم تسجيل الدخول')));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actionsPadding: EdgeInsetsDirectional.all(8),
         actions: [
           Container(
@@ -67,30 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'lib/assets/icon/bareeq-logo.svg',
-                  width: 100,
-                  height: 100,
-                ),
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'بَـريـق',
-                        style: Theme.of(context).textTheme.headlineLarge!
-                            .copyWith(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      TextSpan(
-                        text: '.',
-                        style: Theme.of(context).textTheme.displayLarge!
-                            .copyWith(color: AppColors.accent),
-                      ),
-                    ],
-                  ),
-                ),
+                BareeqLogo(),
                 SizedBox(height: 4),
                 Text(
                   'كل ما يلمع في عالمك، بلمسة واحدة',
@@ -110,78 +120,70 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        'تسجيل الدخول إلى حسابك',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'البريد الإلكتروني أو رقم الجوال',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    SizedBox(height: 4),
-                    TextField(controller: _emailController),
-                    SizedBox(height: 12),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        children: [
-                          Text(
-                            'كلمة المرور',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          Spacer(),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'نسيت كلمة المرور؟',
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(color: AppColors.accent),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    TextField(controller: _passwordController),
-                    SizedBox(height: 14),
-                    Container(
-                      padding: EdgeInsetsDirectional.symmetric(
-                        vertical: 4,
-                        horizontal: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(16),
-                        gradient: AppColors.greenGradient,
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shadowColor: Colors.transparent,
-                          backgroundColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusGeometry.circular(16),
-                          ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'تسجيل الدخول إلى حسابك',
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        onPressed: () {},
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'البريد الإلكتروني أو رقم الجوال',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      SizedBox(height: 4),
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        controller: _emailController,
+                        validator: (email) => validateEmail(email),
+                      ),
+                      SizedBox(height: 12),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'تسجيل الدخول والمتابعة ',
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(color: AppColors.surface),
+                              'كلمة المرور',
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                            Icon(Icons.arrow_forward, color: AppColors.surface),
+                            Spacer(),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'نسيت كلمة المرور؟',
+                                style: Theme.of(context).textTheme.bodyMedium!
+                                    .copyWith(color: AppColors.accent),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      PasswordField(passwordController: _passwordController),
+                      SizedBox(height: 14),
+                      Container(
+                        padding: EdgeInsetsDirectional.symmetric(
+                          vertical: 4,
+                          horizontal: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: AppColors.greenGradient,
+                        ),
+                        child: GradientButton(
+                          loading: _isLoading,
+                          iconData: Icons.arrow_forward,
+                          label: 'تسجيل الدخول والمتابعة',
+                          onPressed: handleLogin,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -283,6 +285,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: TextDecoration.underline,
                       color: AppColors.primary,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SignupScreen(),
+                          ),
+                        );
+                      },
                   ),
                 ],
               ),

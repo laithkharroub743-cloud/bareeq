@@ -21,17 +21,26 @@ ThemeData buildLightTheme() {
       fillColor: Color(0xFFF1F5F9),
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide.none,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
         borderSide: const BorderSide(color: Color(0xFF064E3B), width: 1.5),
       ),
     ),
     scaffoldBackgroundColor: AppColors.surface,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(20),
+        ),
+      ),
+    ),
   );
 }

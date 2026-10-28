@@ -19,6 +19,7 @@ class BarreqApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      locale: Locale('ar'),
       supportedLocales: [Locale('ar')],
 
       home: LoginScreen(),
