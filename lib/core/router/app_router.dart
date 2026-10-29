@@ -25,8 +25,9 @@ class AppRouter {
       GoRoute(
         path: '/product/:id',
         builder: (context, state) {
-          final productId = state.pathParameters['id']!;
-          return ProductDetailsScreen(productId: productId);
+          return ProductDetailsScreen(
+            productId: int.tryParse(state.pathParameters['id']!) ?? -1,
+          );
         },
       ),
       GoRoute(

@@ -1,4 +1,9 @@
 import 'package:bareeq/core/widgets/bareeq_header.dart';
+import 'package:bareeq/features/category/category_screen.dart';
+import 'package:bareeq/features/home/home_screen.dart';
+import 'package:bareeq/features/orders/presentation/orders_screen.dart';
+import 'package:bareeq/features/products/products_screen.dart';
+import 'package:bareeq/features/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainShellScreen extends StatefulWidget {
@@ -10,11 +15,11 @@ class MainShellScreen extends StatefulWidget {
 
 class _MainShellScreenState extends State<MainShellScreen> {
   late List<Widget> tabs = [
-    Center(child: Text('شاشة الرئيسية')),
-    Center(child: Text('شاشة التصنيفات')),
-    Center(child: Text('شاشة المنتجات')),
-    Center(child: Text('شاشة طلباتي')),
-    Center(child: Text('شاشة حسابي')),
+    const HomeScreen(),
+    const CategoryScreen(),
+    const ProductsScreen(),
+    const OrdersScreen(),
+    const SettingsScreen(),
   ];
   int _index = 0;
 
