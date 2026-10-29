@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BareeqLogo extends StatelessWidget {
-  const BareeqLogo({super.key, this.width =100, this.height =100});
+  const BareeqLogo({super.key, this.width = 100, this.height = 100});
   final double width;
   final double height;
   @override

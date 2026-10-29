@@ -1,11 +1,12 @@
+import 'package:bareeq/core/router/app_router.dart';
 import 'package:bareeq/core/theme/app_colors.dart';
 import 'package:bareeq/core/utils/validators.dart';
 import 'package:bareeq/core/widgets/bareeq_logo.dart';
 import 'package:bareeq/core/widgets/gradient_button.dart';
 import 'package:bareeq/core/widgets/password_field.dart';
-import 'package:bareeq/screens/signup_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('تم تسجيل الدخول')));
+      context.go(AppRouter.mainShellScreen);
     }
   }
 
@@ -287,11 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => SignupScreen(),
-                          ),
-                        );
+                        context.push(AppRouter.register);
                       },
                   ),
                 ],

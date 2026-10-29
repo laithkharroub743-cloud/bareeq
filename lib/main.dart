@@ -1,5 +1,5 @@
+import 'package:bareeq/core/router/app_router.dart';
 import 'package:bareeq/core/theme/app_theme.dart';
-import 'package:bareeq/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -11,7 +11,8 @@ class BarreqApp extends StatelessWidget {
   const BarreqApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.appRouter,
       theme: buildLightTheme(),
       title: 'Bareeq',
       localizationsDelegates: [
@@ -22,7 +23,7 @@ class BarreqApp extends StatelessWidget {
       locale: Locale('ar'),
       supportedLocales: [Locale('ar')],
 
-      home: LoginScreen(),
+      
     );
   }
 }

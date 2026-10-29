@@ -11,7 +11,7 @@ class GradientButton extends StatelessWidget {
     this._iconData,
   });
   final String label;
-  final void Function() onPressed;
+  final VoidCallback? onPressed;
   final LinearGradient gradient;
   final bool loading;
   final IconData? _iconData;
@@ -29,10 +29,17 @@ class GradientButton extends StatelessWidget {
         child: Align(
           alignment: AlignmentGeometry.center,
           child: TextButton.icon(
-            onPressed: loading ? () {} : onPressed,
+            onPressed: loading ? null : onPressed,
 
             label: loading
-                ? CircularProgressIndicator()
+                ? SizedBox(
+                    width: 22,
+                    height: 22,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2.5,
+                    ),
+                  )
                 : Text(
                     label,
                     style: Theme.of(

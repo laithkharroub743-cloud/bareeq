@@ -7,7 +7,7 @@ class PasswordField extends StatefulWidget {
     required this._passwordController,
     this.hintText = const Text('كلمة المرور'),
   });
-  
+
   final TextEditingController _passwordController;
   final Widget? hintText;
 
@@ -35,9 +35,7 @@ class _PasswordFieldState extends State<PasswordField> {
         hint: widget.hintText,
         suffixIcon: TextButton.icon(
           label: Text(obsecureText ? 'اظهار' : 'اخفاء'),
-          icon: Icon(
-            obsecureText ? Icons.visibility : Icons.visibility_off,
-          ),
+          icon: Icon(obsecureText ? Icons.visibility : Icons.visibility_off),
           onPressed: () {
             setState(() {
               obsecureText = !obsecureText;

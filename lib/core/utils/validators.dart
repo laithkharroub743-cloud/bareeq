@@ -1,4 +1,6 @@
+String? emailCheck;
 String? validateEmail(String? email) {
+  emailCheck = email;
   if (email == null || email.trim().isEmpty) return 'pls fill field';
   if (email.contains('@') && email.contains('.')) {
     return null;

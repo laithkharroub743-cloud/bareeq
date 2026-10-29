@@ -3,9 +3,9 @@ import 'package:bareeq/core/theme/app_decoration.dart';
 import 'package:bareeq/core/utils/validators.dart';
 import 'package:bareeq/core/widgets/gradient_button.dart';
 import 'package:bareeq/core/widgets/password_field.dart';
-import 'package:bareeq/screens/login_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -220,7 +220,10 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       GradientButton(
                         label: 'إنشاء الحساب والبدء بالتسوق',
-                        onPressed: isChecked ? () {} : () {},
+                        onPressed: isChecked
+                            ? () {
+                              }
+                            : () {},
                         gradient: AppColors.goldGradient,
                       ),
                     ],
@@ -241,12 +244,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                            );
+                            context.pop();
                           },
                         text: 'تسجيل الدخول',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
