@@ -1,7 +1,9 @@
+import 'package:bareeq/core/router/app_router.dart';
 import 'package:bareeq/core/theme/app_colors.dart';
 import 'package:bareeq/features/catalog/data/fake_products.dart';
 import 'package:bareeq/features/products/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FeaturedGrid extends StatelessWidget {
   const FeaturedGrid({super.key, required this.onOpentab});
@@ -39,7 +41,7 @@ class FeaturedGrid extends StatelessWidget {
             crossAxisSpacing: 12,
           ),
           itemBuilder: (context, index) {
-            return ProductCard(product: dummyProducts2[index]);
+            return ProductCard(product: dummyProducts2[index] , onTab: () => context.push(AppRouter.productDetailsScreen),);
           },
           itemCount: dummyProducts2.length,
         ),

@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key, required this.product});
+  const ProductCard({super.key, required this.product , required this.onTab});
   final ProductModel product;
+  final VoidCallback onTab ;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -26,6 +27,7 @@ class _ProductCardState extends State<ProductCard> {
     const goldAccent = Color(0xFFFACC15);
 
     return InkWell(
+      onTap: widget.onTab,
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
