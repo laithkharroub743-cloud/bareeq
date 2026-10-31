@@ -15,13 +15,16 @@ class MainShellScreen extends StatefulWidget {
 
 class _MainShellScreenState extends State<MainShellScreen> {
   late List<Widget> tabs = [
-    const HomeScreen(),
+    HomeScreen(onOpentab: _openTab),
     const CategoryScreen(),
     const ProductsScreen(),
     const OrdersScreen(),
     const SettingsScreen(),
   ];
+
   int _index = 0;
+
+  void _openTab(int i) => setState(() => _index = i);
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +37,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
-        onDestinationSelected: (newIndex) {
-          setState(() {
-            _index = newIndex;
-          });
-        },
+        onDestinationSelected: _openTab,
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'الرئيسية'),
           NavigationDestination(icon: Icon(Icons.category), label: 'التصنيفات'),

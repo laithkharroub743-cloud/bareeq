@@ -42,5 +42,12 @@ ThemeData buildLightTheme() {
         ),
       ),
     ),
+    cardTheme: CardThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(12),
+        side: BorderSide.none,
+      ),
+      color: AppColors.surface,
+    ),
   );
 }

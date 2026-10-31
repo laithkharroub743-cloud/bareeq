@@ -220,10 +220,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       GradientButton(
                         label: 'إنشاء الحساب والبدء بالتسوق',
-                        onPressed: isChecked
-                            ? () {
-                              }
-                            : () {},
+                        onPressed: isChecked ? () {} : () {},
                         gradient: AppColors.goldGradient,
                       ),
                     ],

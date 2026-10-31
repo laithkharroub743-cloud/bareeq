@@ -22,8 +22,6 @@ class BarreqApp extends StatelessWidget {
       ],
       locale: Locale('ar'),
       supportedLocales: [Locale('ar')],
-
-      
     );
   }
 }
